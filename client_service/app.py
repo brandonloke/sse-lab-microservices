@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, request
 import requests
+import os
 
 app = Flask(__name__)
+
+api_url = os.getenv('BOOK_API_URL', 'http://default-api-url-if-not-set')
 
 def get_data_from_api(api_url, query_params=None):
     try:
@@ -28,12 +31,9 @@ def get_data_from_api(api_url, query_params=None):
 
 @app.route('/get_data', methods=['GET'])
 def get_data():
-
-    api_url = 'http://book-api-server-dns.cye8ahgvh7b6dkea.uksouth.azurecontainer.io:5000/books'
-
     query_parameters = request.args.to_dict()
 
-    result = get_data_from_api(api_url, query_params=query_parameters)
+    result = get_data_from_api(query_params=query_parameters)
 
     if result:
         return jsonify(result)
