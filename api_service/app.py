@@ -42,7 +42,13 @@ books = [
 
 @app.route('/books', methods=['GET'])
 def get_books():
-    return jsonify(books)
+    query_params = request.args
+    filtered_books = books
+    for key, value in query_params.items():
+        if key == "id" or key == "publication_year":
+            value = int(value)
+        filtered_books = [book for book in filtered_books if book.get(key) == value]
+    return jsonify(filtered_books)
 
 if __name__ == '__main__':
     app.run(debug=True)
