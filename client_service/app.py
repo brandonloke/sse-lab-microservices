@@ -66,8 +66,7 @@ def search_result():
     print(query_params)
     
     try:
-        result = get_data_from_api('http://book-api-server-dns.cye8ahgvh7b6dkea.uksouth.azurecontainer.io:5000/books'
-                        , query_params=query_params)
+        result = get_data_from_api(api_url, query_params=query_params)
         
         if len(result) > 1 or result == []: return "Invalid search input. Please try again." 
 
