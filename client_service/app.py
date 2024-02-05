@@ -3,6 +3,7 @@ import requests
 import os
 
 app = Flask(__name__)
+app.debug = True
 
 api_url = os.getenv('BOOK_API_URL', 'http://book-api-server-dns.cye8ahgvh7b6dkea.uksouth.azurecontainer.io:5000/books')
 
