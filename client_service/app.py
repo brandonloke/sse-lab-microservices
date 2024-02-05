@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-api_url = os.getenv('BOOK_API_URL', 'http://default-api-url-if-not-set')
+api_url = os.getenv('BOOK_API_URL', 'http://book-api-server-dns.cye8ahgvh7b6dkea.uksouth.azurecontainer.io:5000/books')
 
 def get_data_from_api(api_url, query_params=None):
     try:
